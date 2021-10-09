@@ -13,6 +13,8 @@ interface Props {
   width: number;
   backgroundWidth?: number;
   tintColor?: Color;
+  dangerTintColor?: Color;
+  dangerValue?: number;
   tintTransparency?: boolean;
   backgroundColor?: Color;
   rotation?: number;
@@ -35,6 +37,8 @@ export const CircularProgress: React.FC<Props> = ({
   width,
   backgroundWidth,
   tintColor = 'black',
+  dangerTintColor = 'black',
+  dangerValue = emptyValue,
   tintTransparency = true,
   backgroundColor,
   style,
@@ -75,7 +79,15 @@ export const CircularProgress: React.FC<Props> = ({
           {backgroundColor && (
             <Path d={backgroundPath} stroke={backgroundColor} strokeWidth={backgroundWidth || width} strokeLinecap={lineCap} fill="transparent" />
           )}
-          {fill > emptyValue && <Path d={circlePath} stroke={tintColor} strokeWidth={width} strokeLinecap={fillLineCap} fill="transparent" />}
+          {fill > emptyValue && (
+            <Path
+              d={circlePath}
+              stroke={fill > dangerValue ? dangerTintColor : tintColor}
+              strokeWidth={width}
+              strokeLinecap={fillLineCap}
+              fill="transparent"
+            />
+          )}
           {cap}
         </G>
       </Svg>

@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const tintProgressColor = '#5ED7C7';
+export const dangerTintProgressColor = '#FF647C';
 export const progressBackgroundColor = 'rgba(228, 228, 228, 1)';
 
 export const styles = StyleSheet.create({
@@ -19,6 +20,10 @@ export const styles = StyleSheet.create({
     height: 45,
     borderRadius: 10,
   },
+  statWrapper: {
+    flex: 1,
+    paddingStart: 15,
+  },
   countryName: {
     fontSize: 16,
     fontWeight: '400',
@@ -28,10 +33,6 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     color: 'rgba(38, 50, 56, 0.8)',
-  },
-  statsBar: {
-    width: 64,
-    height: 64,
   },
   progressText: {
     textAlign: 'center',

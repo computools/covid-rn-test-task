@@ -48,7 +48,6 @@ module.exports = {
     'import/no-unassigned-import': [errorCode, {allow: ['react-native-gesture-handler']}],
     '@typescript-eslint/explicit-member-accessibility': 'error',
     'no-magic-numbers': 'error',
-    'implicit-arrow-linebreak': ['error', 'beside'],
     'prefer-arrow-callback': ['error', {allowNamedFunctions: true}],
     '@typescript-eslint/typedef': [
       'error',
