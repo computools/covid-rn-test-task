@@ -37,6 +37,7 @@ module.exports = {
     'plugin:import/typescript',
   ],
   rules: {
+    'no-var': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/ban-tslint-comment': 'error',
     'eslint-comments/no-use': ['error', {allow: []}],

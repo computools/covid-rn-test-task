@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 
+import {CircularProgress} from '../../components/circular-progress';
 import {toLocaleStr} from '../../utils/to-locale-str';
 import {Country} from '../../models/country';
 
-import {styles} from './styles/country-item';
+import {progressBackgroundColor, styles, tintProgressColor} from './styles/country-item';
 
 interface Props {
   showSeparator?: boolean;
@@ -20,6 +21,10 @@ export const CountryItem: React.FC<Props> = ({country, showSeparator}) => (
       <Text style={styles.statText}>Recovered - {toLocaleStr(country.recovered)}</Text>
       <Text style={styles.statText}>Deaths - {toLocaleStr(country.deaths)}</Text>
     </View>
-    <View style={styles.statsBar} />
+    <View style={styles.statsBar}>
+      <CircularProgress size={64} width={3} fill={75} tintColor={tintProgressColor} lineCap="round" backgroundColor={progressBackgroundColor}>
+        {(fill: number) => <Text style={styles.progressText}>{fill}%</Text>}
+      </CircularProgress>
+    </View>
   </View>
 );

@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
 
+export const tintProgressColor = '#5ED7C7';
+export const progressBackgroundColor = 'rgba(228, 228, 228, 1)';
+
 export const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
@@ -29,5 +32,11 @@ export const styles = StyleSheet.create({
   statsBar: {
     width: 64,
     height: 64,
+  },
+  progressText: {
+    textAlign: 'center',
+    color: 'rgba(21, 21, 34, 1)',
+    fontSize: 15,
+    fontWeight: '500',
   },
 });
