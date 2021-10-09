@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   wrapper: {
-    width: '90%',
+    width: '100%',
     borderWidth: 2,
     borderColor: 'rgba(228, 228, 228, 0.6)',
     borderRadius: 10,

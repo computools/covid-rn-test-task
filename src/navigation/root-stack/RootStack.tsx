@@ -9,6 +9,6 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootStack = () => (
   <Stack.Navigator>
-    <Stack.Screen name={RootRoutes.Home} component={Home} />
+    <Stack.Screen options={{title: 'COVID - 19'}} name={RootRoutes.Home} component={Home} />
   </Stack.Navigator>
 );
