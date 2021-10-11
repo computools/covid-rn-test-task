@@ -6,10 +6,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
+import {CovidApi, SummaryOut} from '../../apis/covid/covid-api';
 import {DataItem} from '../../components/bar-chart/data-item';
 import {GlobalStatCard} from './GlobalStatCard';
 import {CountriesCard} from './CountriesCard';
-import {CovidApi, SummaryOut} from '../../apis/covid/covid-api';
+import {Country} from '../../models/country';
 
 import {progressColor, styles} from './styles/home';
 
@@ -62,6 +63,8 @@ const buildStat = (global: SummaryOut['global']) => {
 export const Home: React.FC<RootStackProps<RootRoutes.Home>> = ({navigation}) => {
   const {isLoading, data} = useQuery('countriesSummary', CovidApi.getSummary);
 
+  const goToCountryDetails = React.useCallback((country: Country) => navigation.navigate(RootRoutes.CountryDetails, {country}), [navigation]);
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.emptyScreenWrapper}>
@@ -74,7 +77,11 @@ export const Home: React.FC<RootStackProps<RootRoutes.Home>> = ({navigation}) =>
 
   return (
     <ScrollView style={styles.background} contentContainerStyle={styles.screenWrapper}>
-      <CountriesCard onSeeMorePress={() => navigation.navigate(RootRoutes.AllCountries)} countries={data!.topFiveCountries} />
+      <CountriesCard
+        goToCountryDetails={goToCountryDetails}
+        onSeeMorePress={() => navigation.navigate(RootRoutes.AllCountries)}
+        countries={data!.topFiveCountries}
+      />
       <GlobalStatCard totalStat={total} todayStat={today} />
     </ScrollView>
   );

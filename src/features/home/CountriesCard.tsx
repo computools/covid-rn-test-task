@@ -10,11 +10,12 @@ import {styles} from './styles/countries-card';
 interface Props {
   onSeeMorePress?: () => void;
   countries: Array<Country>;
+  goToCountryDetails: (country: Country) => void;
 }
 
 const firstItemIndex = 0;
 
-export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress}) => (
+export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress, goToCountryDetails}) => (
   <View style={styles.wrapper}>
     <View style={styles.headerWrapper}>
       <Text style={styles.headerTitle}>Top Countries</Text>
@@ -22,7 +23,12 @@ export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress}) => (
     </View>
     <View style={styles.countriesWrapper}>
       {countries.map((country, index) => (
-        <CountryRow key={`country-${country.id}`} showSeparator={index !== firstItemIndex} country={country} />
+        <CountryRow
+          onPress={() => goToCountryDetails(country)}
+          key={`country-${country.id}`}
+          showSeparator={index !== firstItemIndex}
+          country={country}
+        />
       ))}
     </View>
   </View>
