@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     borderColor: 'rgba(228, 228, 228, 0.6)',
     marginVertical: '4%',
   },
+  title: {
+    fontSize: 19,
+    fontWeight: '500',
+    padding: 18,
+  },
   activeButtonText: {
     color: '#00BFA6',
   },
