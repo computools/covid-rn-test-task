@@ -6,7 +6,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {SummaryResponse} from '../../models/dtos/summary-response';
 import {RootStackProps} from '../../navigation/root-stack/types';
-import {DataItem, GlobalStatisticCard} from './GlobalStatisticCard';
+import {ChartCard, DataItem} from '../../components/chart-card';
 import {CountriesCard} from './CountriesCard';
 import {Country} from '../../models/country';
 
@@ -54,7 +54,7 @@ export const Home: React.FC<RootStackProps> = () => {
   return (
     <ScrollView contentContainerStyle={styles.screenWrapper}>
       <CountriesCard countries={countries} />
-      <GlobalStatisticCard data={globalStat} paddingHorizontal={padding} />
+      <ChartCard data={globalStat} paddingHorizontal={padding} />
     </ScrollView>
   );
 };
