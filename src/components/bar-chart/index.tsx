@@ -1,15 +1,11 @@
 import React from 'react';
 import {View, Dimensions, ViewStyle, StyleProp} from 'react-native';
+
 import {ChartColumn} from './column';
+import {DataItem} from './data-item';
+import {XTitle} from './x-title';
 
 import {styles} from './styles/styles';
-
-export interface DataItem {
-  id: string;
-  value: number;
-  title: string;
-  color: string;
-}
 
 interface Props {
   wrapperStyle?: StyleProp<ViewStyle>;
@@ -22,7 +18,7 @@ const aspectRatio = 0.65;
 const twice = 2;
 const gapsVal = 1;
 
-export const ChartCard: React.FC<Props> = ({paddingHorizontal, wrapperStyle, data}) => {
+export const BarChart: React.FC<Props> = ({paddingHorizontal, wrapperStyle, data}) => {
   const heightPadding = 100;
   const cardWidth = wWidth - paddingHorizontal * twice;
   const cardHeight = aspectRatio * cardWidth;
@@ -35,19 +31,26 @@ export const ChartCard: React.FC<Props> = ({paddingHorizontal, wrapperStyle, dat
   const maxY = Math.max(...data.map(d => d.value));
 
   return (
-    <View style={[{width: cardWidth, height: cardHeight}, styles.wrapper, wrapperStyle]}>
-      {data.map((item, i) => (
-        <ChartColumn
-          key={`column-${item.id}`}
-          index={i}
-          columnWidth={columnWidth}
-          columnCapHeight={columnCapHeight}
-          step={step}
-          item={item}
-          maxY={maxY}
-          canvasHeight={canvasHeight}
-        />
-      ))}
+    <View>
+      <View style={[{width: cardWidth, height: cardHeight}, wrapperStyle]}>
+        {data.map((item, i) => (
+          <ChartColumn
+            key={`column-${item.id}`}
+            index={i}
+            columnWidth={columnWidth}
+            columnCapHeight={columnCapHeight}
+            step={step}
+            item={item}
+            maxY={maxY}
+            canvasHeight={canvasHeight}
+          />
+        ))}
+      </View>
+      <View style={styles.titlesWrapper}>
+        {data.map((item, i) => (
+          <XTitle key={`x-title-${item.id}`} index={i} step={step} item={item} />
+        ))}
+      </View>
     </View>
   );
 };

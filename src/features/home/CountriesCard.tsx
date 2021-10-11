@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {LinkButton} from '../../components/link-button';
 
 import {Country} from '../../models/country';
 import {CountryItem} from './CountryItem';
@@ -17,9 +17,7 @@ export const CountriesCard: React.FC<Props> = ({countries}) => (
   <View style={styles.wrapper}>
     <View style={styles.headerWrapper}>
       <Text style={styles.headerTitle}>Top Countries</Text>
-      <TouchableOpacity>
-        <Text style={styles.headerMoreText}>See More</Text>
-      </TouchableOpacity>
+      <LinkButton text="See More" />
     </View>
     <View style={styles.countriesWrapper}>
       {countries.map((country, index) => (

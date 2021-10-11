@@ -6,11 +6,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {SummaryResponse} from '../../models/dtos/summary-response';
 import {RootStackProps} from '../../navigation/root-stack/types';
-import {ChartCard, DataItem} from '../../components/chart-card';
+import {DataItem} from '../../components/bar-chart/data-item';
+import {GlobalStatCard} from './GlobalStatCard';
 import {CountriesCard} from './CountriesCard';
 import {Country} from '../../models/country';
 
-import {padding, progressColor, styles} from './styles/home';
+import {progressColor, styles} from './styles/home';
 
 const startIndex = 0;
 const endIndex = 5;
@@ -51,10 +52,31 @@ export const Home: React.FC<RootStackProps> = () => {
     },
   ];
 
+  const todayStat: Array<DataItem> = [
+    {
+      id: 'NewConfirmed',
+      title: 'Confirmed',
+      value: data!.Global.NewConfirmed,
+      color: '#3AC4FF',
+    },
+    {
+      id: 'NewDeaths',
+      title: 'Deaths',
+      value: data!.Global.NewDeaths,
+      color: '#FF565E',
+    },
+    {
+      id: 'NewRecovered',
+      title: 'Recovered',
+      value: data!.Global.NewRecovered,
+      color: '#00BFA6',
+    },
+  ];
+
   return (
     <ScrollView contentContainerStyle={styles.screenWrapper}>
       <CountriesCard countries={countries} />
-      <ChartCard data={globalStat} paddingHorizontal={padding} />
+      <GlobalStatCard totalStat={globalStat} todayStat={todayStat} />
     </ScrollView>
   );
 };
