@@ -11,4 +11,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding,
   },
+  chartsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });

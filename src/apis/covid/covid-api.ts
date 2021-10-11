@@ -1,6 +1,8 @@
-import {Summary} from './summary';
 import {Country as CountryOut} from '../../models/country';
+import {CountryEntry} from '../../models/country-entry';
+import {DayOneCountry} from './day-one-country';
 import {Country as CountryIn} from './country';
+import {Summary} from './summary';
 
 interface CovStat {
   confirmed: number;
@@ -31,6 +33,22 @@ const buildCountry = (json: CountryIn) =>
     json.TotalDeaths,
     json.NewRecovered,
     json.TotalRecovered,
+    new Date(json.Date),
+  );
+
+const buildCountryEntry = (json: DayOneCountry) =>
+  new CountryEntry(
+    json.Country,
+    json.CountryCode,
+    json.Province,
+    json.City,
+    json.CityCode,
+    json.Lat,
+    json.Lon,
+    json.Confirmed,
+    json.Deaths,
+    json.Recovered,
+    json.Active,
     new Date(json.Date),
   );
 
@@ -68,5 +86,12 @@ export class CovidApi {
     return data!.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
       .filter(c => c.Country.toLowerCase().includes(query.toLowerCase()))
       .map(buildCountry);
+  };
+
+  public static getDayOneStatByCountry = async (slug: string): Promise<Array<CountryEntry>> => {
+    const res = await fetch(`${CovidApi.baseUrl}/total/dayone/country/${slug}`);
+    const data: Array<DayOneCountry> = await res.json();
+
+    return data.map(buildCountryEntry);
   };
 }
