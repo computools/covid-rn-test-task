@@ -59,7 +59,7 @@ const buildStat = (global: SummaryOut['global']) => {
   return {today, total};
 };
 
-export const Home: React.FC<RootStackProps> = ({navigation}) => {
+export const Home: React.FC<RootStackProps<RootRoutes.Home>> = ({navigation}) => {
   const {isLoading, data} = useQuery('countriesSummary', CovidApi.getSummary);
 
   if (isLoading) {
@@ -73,7 +73,7 @@ export const Home: React.FC<RootStackProps> = ({navigation}) => {
   const {total, today} = buildStat(data!.global);
 
   return (
-    <ScrollView contentContainerStyle={styles.screenWrapper}>
+    <ScrollView style={styles.background} contentContainerStyle={styles.screenWrapper}>
       <CountriesCard onSeeMorePress={() => navigation.navigate(RootRoutes.AllCountries)} countries={data!.topFiveCountries} />
       <GlobalStatCard totalStat={total} todayStat={today} />
     </ScrollView>

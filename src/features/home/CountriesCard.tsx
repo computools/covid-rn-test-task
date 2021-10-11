@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {LinkButton} from '../../components/link-button';
 
+import {CountryRow} from '../../components/country-row';
 import {Country} from '../../models/country';
-import {CountryItem} from './CountryItem';
 
 import {styles} from './styles/countries-card';
 
@@ -22,7 +22,7 @@ export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress}) => (
     </View>
     <View style={styles.countriesWrapper}>
       {countries.map((country, index) => (
-        <CountryItem key={`country-${country.id}`} showSeparator={index !== firstItemIndex} country={country} />
+        <CountryRow key={`country-${country.id}`} showSeparator={index !== firstItemIndex} country={country} />
       ))}
     </View>
   </View>

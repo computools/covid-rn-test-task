@@ -7,4 +7,4 @@ export type RootStackParamList = {
   [RootRoutes.AllCountries]: undefined;
 };
 
-export interface RootStackProps extends Stack.NativeStackScreenProps<RootStackParamList, RootRoutes.Home> {}
+export interface RootStackProps<Screen extends RootRoutes> extends Stack.NativeStackScreenProps<RootStackParamList, Screen> {}

@@ -40,7 +40,6 @@ module.exports = {
     'no-var': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/ban-tslint-comment': 'error',
-    'eslint-comments/no-use': ['error', {allow: []}],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-empty-interface': ['error', {allowSingleExtends: true}],
     'no-duplicate-imports': 'error',

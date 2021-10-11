@@ -60,4 +60,13 @@ export class CovidApi {
       },
     };
   };
+
+  public static getAllCountriesSummary = async (query: string): Promise<Array<CountryOut>> => {
+    const res = await fetch(`${CovidApi.baseUrl}/summary`);
+    const data: Summary = await res.json();
+
+    return data!.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
+      .filter(c => c.Country.toLowerCase().includes(query.toLowerCase()))
+      .map(buildCountry);
+  };
 }

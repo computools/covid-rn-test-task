@@ -7,9 +7,16 @@ const paddingRatio = 0.04;
 export const padding = wWidth * paddingRatio;
 
 export const styles = StyleSheet.create({
-  screenWrapper: {
+  background: {
+    backgroundColor: '#FFFFFF',
+  },
+  contentWrapper: {
     paddingVertical: padding,
     paddingHorizontal: padding,
-    alignItems: 'center',
+  },
+  separator: {
+    height: 2,
+    backgroundColor: 'rgba(228, 228, 228, 0.6)',
+    width: '100%',
   },
 });
