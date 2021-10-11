@@ -1,6 +1,6 @@
-import {Country} from './country';
+import {Country as CountryIn} from './country';
 
-export interface SummaryResponse {
+export interface Summary {
   ID: string;
   Message: string;
   Global: {
@@ -12,6 +12,6 @@ export interface SummaryResponse {
     TotalRecovered: number;
     Date: string;
   };
-  Countries: Array<Country>;
+  Countries: Array<CountryIn>;
   Date: string;
 }

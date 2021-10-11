@@ -8,16 +8,17 @@ import {CountryItem} from './CountryItem';
 import {styles} from './styles/countries-card';
 
 interface Props {
+  onSeeMorePress?: () => void;
   countries: Array<Country>;
 }
 
 const firstItemIndex = 0;
 
-export const CountriesCard: React.FC<Props> = ({countries}) => (
+export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress}) => (
   <View style={styles.wrapper}>
     <View style={styles.headerWrapper}>
       <Text style={styles.headerTitle}>Top Countries</Text>
-      <LinkButton text="See More" />
+      <LinkButton onPress={onSeeMorePress} text="See More" />
     </View>
     <View style={styles.countriesWrapper}>
       {countries.map((country, index) => (

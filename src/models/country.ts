@@ -1,5 +1,3 @@
-import {Country as CountryDTO} from './dtos/country';
-
 export class Country {
   public id: string;
   public name: string;
@@ -38,19 +36,4 @@ export class Country {
     this.totalRecovered = totalRecovered;
     this.date = date;
   }
-
-  public static parse = (json: CountryDTO) =>
-    new Country(
-      json.ID,
-      json.Country,
-      json.CountryCode,
-      json.Slug,
-      json.NewConfirmed,
-      json.TotalConfirmed,
-      json.NewDeaths,
-      json.TotalDeaths,
-      json.NewRecovered,
-      json.TotalRecovered,
-      new Date(json.Date),
-    );
 }

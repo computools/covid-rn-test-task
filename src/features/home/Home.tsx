@@ -4,20 +4,63 @@ import {ActivityIndicator} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {SummaryResponse} from '../../models/dtos/summary-response';
+import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
 import {DataItem} from '../../components/bar-chart/data-item';
 import {GlobalStatCard} from './GlobalStatCard';
 import {CountriesCard} from './CountriesCard';
-import {Country} from '../../models/country';
+import {CovidApi, SummaryOut} from '../../apis/covid/covid-api';
 
 import {progressColor, styles} from './styles/home';
 
-const startIndex = 0;
-const endIndex = 5;
+const buildStat = (global: SummaryOut['global']) => {
+  const total: Array<DataItem> = [
+    {
+      id: 'TotalConfirmed',
+      title: 'Confirmed',
+      value: global.total.confirmed,
+      color: '#3AC4FF',
+    },
+    {
+      id: 'TotalDeaths',
+      title: 'Deaths',
+      value: global.total.deaths,
+      color: '#FF565E',
+    },
+    {
+      id: 'TotalRecovered',
+      title: 'Recovered',
+      value: global.total.recovered,
+      color: '#00BFA6',
+    },
+  ];
 
-export const Home: React.FC<RootStackProps> = () => {
-  const {isLoading, data} = useQuery<SummaryResponse>('countriesSummary', () => fetch('https://api.covid19api.com/summary').then(res => res.json()));
+  const today: Array<DataItem> = [
+    {
+      id: 'NewConfirmed',
+      title: 'Confirmed',
+      value: global.today.confirmed,
+      color: '#3AC4FF',
+    },
+    {
+      id: 'NewDeaths',
+      title: 'Deaths',
+      value: global.today.deaths,
+      color: '#FF565E',
+    },
+    {
+      id: 'NewRecovered',
+      title: 'Recovered',
+      value: global.today.recovered,
+      color: '#00BFA6',
+    },
+  ];
+
+  return {today, total};
+};
+
+export const Home: React.FC<RootStackProps> = ({navigation}) => {
+  const {isLoading, data} = useQuery('countriesSummary', CovidApi.getSummary);
 
   if (isLoading) {
     return (
@@ -27,56 +70,12 @@ export const Home: React.FC<RootStackProps> = () => {
     );
   }
 
-  const countries = data!.Countries.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
-    .slice(startIndex, endIndex)
-    .map(Country.parse);
-
-  const globalStat: Array<DataItem> = [
-    {
-      id: 'TotalConfirmed',
-      title: 'Confirmed',
-      value: data!.Global.TotalConfirmed,
-      color: '#3AC4FF',
-    },
-    {
-      id: 'TotalDeaths',
-      title: 'Deaths',
-      value: data!.Global.TotalDeaths,
-      color: '#FF565E',
-    },
-    {
-      id: 'TotalRecovered',
-      title: 'Recovered',
-      value: data!.Global.TotalRecovered,
-      color: '#00BFA6',
-    },
-  ];
-
-  const todayStat: Array<DataItem> = [
-    {
-      id: 'NewConfirmed',
-      title: 'Confirmed',
-      value: data!.Global.NewConfirmed,
-      color: '#3AC4FF',
-    },
-    {
-      id: 'NewDeaths',
-      title: 'Deaths',
-      value: data!.Global.NewDeaths,
-      color: '#FF565E',
-    },
-    {
-      id: 'NewRecovered',
-      title: 'Recovered',
-      value: data!.Global.NewRecovered,
-      color: '#00BFA6',
-    },
-  ];
+  const {total, today} = buildStat(data!.global);
 
   return (
     <ScrollView contentContainerStyle={styles.screenWrapper}>
-      <CountriesCard countries={countries} />
-      <GlobalStatCard totalStat={globalStat} todayStat={todayStat} />
+      <CountriesCard onSeeMorePress={() => navigation.navigate(RootRoutes.AllCountries)} countries={data!.topFiveCountries} />
+      <GlobalStatCard totalStat={total} todayStat={today} />
     </ScrollView>
   );
 };
