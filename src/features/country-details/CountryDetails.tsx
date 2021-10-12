@@ -1,7 +1,6 @@
 import React from 'react';
 import {useQuery} from 'react-query';
 import {ActivityIndicator, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
@@ -20,18 +19,16 @@ export const CountryDetails: React.FC<RootStackProps<RootRoutes.CountryDetails>>
   }
 
   return (
-    <SafeAreaView style={styles.screeenWrapper}>
-      <ScrollView contentContainerStyle={styles.screenContent}>
-        <TotalCard country={route.params.country} />
-        <View style={styles.chartsRow}>
-          <ChartCard padding={padding} title="Confirmed" data={data!.map(e => ({xValue: e.confirmed, yValue: e.date.getTime()}))} color="#FF8A34" />
-          <ChartCard padding={padding} title="Active" data={data!.map(e => ({xValue: e.active, yValue: e.date.getTime()}))} color="#3AC4FF" />
-        </View>
-        <View style={styles.chartsRow}>
-          <ChartCard padding={padding} title="Recovered" data={data!.map(e => ({xValue: e.recovered, yValue: e.date.getTime()}))} color="#00BFA6" />
-          <ChartCard padding={padding} title="Deaths" data={data!.map(e => ({xValue: e.deaths, yValue: e.date.getTime()}))} color="#F96E64" />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView contentContainerStyle={styles.screenContent}>
+      <TotalCard country={route.params.country} />
+      <View style={styles.chartsRow}>
+        <ChartCard padding={padding} title="Confirmed" data={data!.map(e => ({xValue: e.confirmed, yValue: e.date.getTime()}))} color="#FF8A34" />
+        <ChartCard padding={padding} title="Active" data={data!.map(e => ({xValue: e.active, yValue: e.date.getTime()}))} color="#3AC4FF" />
+      </View>
+      <View style={styles.chartsRow}>
+        <ChartCard padding={padding} title="Recovered" data={data!.map(e => ({xValue: e.recovered, yValue: e.date.getTime()}))} color="#00BFA6" />
+        <ChartCard padding={padding} title="Deaths" data={data!.map(e => ({xValue: e.deaths, yValue: e.date.getTime()}))} color="#F96E64" />
+      </View>
+    </ScrollView>
   );
 };

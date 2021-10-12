@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, RefreshControl, View} from 'react-native';
+import {FlatList, Platform, RefreshControl, View} from 'react-native';
 import {useQuery} from 'react-query';
 import debounce from 'lodash.debounce';
 
@@ -26,7 +26,7 @@ export const AllCountries: React.FC<RootStackProps<RootRoutes.AllCountries>> = (
       contentContainerStyle={styles.contentWrapper}
       ListHeaderComponent={
         <OutlinedTextInput
-          containerStyle={styles.searchInputContent}
+          containerStyle={Platform.select({android: styles.searchInputContent})}
           activeColor="#5ED7C7"
           label="Search"
           value={query}
