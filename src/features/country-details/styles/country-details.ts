@@ -9,8 +9,8 @@ export const padding = wWidth * paddingRatio;
 export const styles = StyleSheet.create({
   screeenWrapper: {
     flex: 1,
-    padding,
   },
+  screenContent: {padding},
   chartsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

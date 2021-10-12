@@ -24,7 +24,15 @@ export const AllCountries: React.FC<RootStackProps<RootRoutes.AllCountries>> = (
       style={styles.background}
       data={data}
       contentContainerStyle={styles.contentWrapper}
-      ListHeaderComponent={<OutlinedTextInput activeColor="#5ED7C7" label="Search" value={query} onChangeText={delayedQuery} />}
+      ListHeaderComponent={
+        <OutlinedTextInput
+          containerStyle={styles.searchInputContent}
+          activeColor="#5ED7C7"
+          label="Search"
+          value={query}
+          onChangeText={delayedQuery}
+        />
+      }
       renderItem={({item}) => <CountryRow onPress={() => navigation.navigate(RootRoutes.CountryDetails, {country: item})} country={item} />}
       keyExtractor={item => `Country-${item.id}`}
       ItemSeparatorComponent={() => <View style={styles.separator} />}

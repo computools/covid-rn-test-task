@@ -10,6 +10,10 @@ export const styles = StyleSheet.create({
   background: {
     backgroundColor: '#FFFFFF',
   },
+  searchInputContent: {
+    padding: 5,
+    paddingVertical: 0,
+  },
   contentWrapper: {
     paddingVertical: padding,
     paddingHorizontal: padding,

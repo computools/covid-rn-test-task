@@ -1,16 +1,16 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Picker} from '@react-native-picker/picker';
-import {ActivityIndicator, Alert} from 'react-native';
+import {ActivityIndicator, Alert, View} from 'react-native';
 import {useQuery} from 'react-query';
-
-import {CovidApi} from '../../apis/covid/covid-api';
 
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
 import {LinkButton} from '../../components/link-button';
-import {styles} from './styles/user-report';
+import {CovidApi} from '../../apis/covid/covid-api';
 import {Case} from '../../apis/covid/dto/case';
+
+import {styles} from './styles/user-report';
 
 export const UserReport: React.FC<RootStackProps<RootRoutes.UserReport>> = ({navigation}) => {
   const [country, setCountry] = React.useState(null);
@@ -34,16 +34,17 @@ export const UserReport: React.FC<RootStackProps<RootRoutes.UserReport>> = ({nav
       ) : (
         <Picker selectedValue={country} onValueChange={value => setCountry(value)}>
           {data?.map(c => (
-            <Picker.Item label={c.name} value={c.slug} />
+            <Picker.Item key={`Country-${c.slug}`} label={c.name} value={c.slug} />
           ))}
         </Picker>
       )}
       <Picker selectedValue={selectedCase} onValueChange={value => setCase(value)}>
         {Object.values(Case).map(c => (
-          <Picker.Item label={c} value={c} />
+          <Picker.Item key={`Case-${c}`} label={c} value={c} />
         ))}
       </Picker>
-      <LinkButton onPress={handleAddCase} text="Add Case" />
+      <View style={styles.emptySpace} />
+      <LinkButton style={styles.addReportButton} onPress={handleAddCase} text="Add Case" />
     </SafeAreaView>
   );
 };

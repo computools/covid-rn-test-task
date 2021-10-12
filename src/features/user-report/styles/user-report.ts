@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: width * paddingRatio,
-    justifyContent: 'center',
   },
+  emptySpace: {flex: 1},
+  addReportButton: {alignSelf: 'center'},
 });
