@@ -7,6 +7,7 @@ export type RootStackParamList = {
   [RootRoutes.Home]: undefined;
   [RootRoutes.AllCountries]: undefined;
   [RootRoutes.CountryDetails]: {country: Country};
+  [RootRoutes.UserReport]: undefined;
 };
 
 export interface RootStackProps<Screen extends RootRoutes> extends Stack.NativeStackScreenProps<RootStackParamList, Screen> {}
