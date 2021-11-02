@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {tooltipArrow} from './column';
+import {tooltipArrow} from './chart-column.styles';
 
 const twice = 2;
 

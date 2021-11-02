@@ -6,7 +6,7 @@ import {useQuery} from 'react-query';
 
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
-import {LinkButton} from '../../components/link-button';
+import {LinkButton} from '../../components/link-button/LinkButton.component';
 import {CovidApi} from '../../apis/covid/covid-api';
 import {Case} from '../../apis/covid/dto/case';
 

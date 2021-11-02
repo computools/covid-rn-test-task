@@ -4,7 +4,7 @@ import * as shape from 'd3-shape';
 import {scaleLinear} from 'd3-scale';
 import Svg, {Color, Defs, LinearGradient, Path, Stop} from 'react-native-svg';
 
-import {styles} from './styles';
+import {styles} from './curve-chart.styles';
 
 export interface DataPoint {
   xValue: number;

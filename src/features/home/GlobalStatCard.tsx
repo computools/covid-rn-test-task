@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-import {DataItem} from '../../components/bar-chart/data-item';
-import {BarChart} from '../../components/bar-chart';
-import {LinkButton} from '../../components/link-button';
+import {DataItem} from '../../components/bar-chart/data-item.types';
+import {BarChart} from '../../components/bar-chart/BarChart.component';
+import {LinkButton} from '../../components/link-button/LinkButton.component';
 
 import {padding, styles} from './styles/global-stat-card';
 

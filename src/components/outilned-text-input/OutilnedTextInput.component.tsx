@@ -13,7 +13,7 @@ import {
   defaultLabelUnselectedSize,
   labelPadding,
   defaultBackgroundColor,
-} from './styles';
+} from './outilned-text-input.styles';
 
 enum LabelStates {
   Unselected,

@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {CountryDetails} from '../../features/country-details/CountryDetails';
 import {AllCountries} from '../../features/all-countries/AllCountries';
-import {UserReportButton} from '../../components/user-report-button';
+import {UserReportButton} from '../../components/user-report-button/UserReportButton.component';
 import {UserReport} from '../../features/user-report/UserReport';
 import {Home} from '../../features/home/Home';
 import {RootStackParamList} from './types';

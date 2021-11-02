@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleProp} from 'react-native';
 
-import {CircularProgress} from '../circular-progress';
+import {CircularProgress} from '../circular-progress/CircularProgress.component';
 import {toLocaleStr} from '../../utils/to-locale-str';
 import {Country} from '../../models/country';
 
-import {dangerTintProgressColor, progressBackgroundColor, styles, tintProgressColor} from './styles';
+import {dangerTintProgressColor, progressBackgroundColor, styles, tintProgressColor} from './country-row.styles';
 
 interface Props extends TouchableOpacityProps {
   wrapperStyle?: StyleProp<ViewStyle>;

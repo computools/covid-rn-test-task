@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Dimensions, ViewStyle, StyleProp} from 'react-native';
 
-import {ChartColumn} from './column';
-import {DataItem} from './data-item';
-import {XTitle} from './x-title';
+import {ChartColumn} from './ChartColumn.component';
+import {DataItem} from './data-item.types';
+import {XTitle} from './XTitle.component';
 
-import {defaultCapHeight, defaultColumnWidth, defaultHeightPadding, styles} from './styles/styles';
+import {defaultCapHeight, defaultColumnWidth, defaultHeightPadding, styles} from './styles/bar-chart.styles';
 
 interface Props {
   wrapperStyle?: StyleProp<ViewStyle>;

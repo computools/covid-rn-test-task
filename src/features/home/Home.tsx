@@ -7,7 +7,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
 import {CovidApi, SummaryOut} from '../../apis/covid/covid-api';
-import {DataItem} from '../../components/bar-chart/data-item';
+import {DataItem} from '../../components/bar-chart/data-item.types';
 import {GlobalStatCard} from './GlobalStatCard';
 import {CountriesCard} from './CountriesCard';
 import {Country} from '../../models/country';

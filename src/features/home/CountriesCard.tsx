@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {LinkButton} from '../../components/link-button';
+import {LinkButton} from '../../components/link-button/LinkButton.component';
 
-import {CountryRow} from '../../components/country-row';
+import {CountryRow} from '../../components/country-row/CountryRow';
 import {Country} from '../../models/country';
 
 import {styles} from './styles/countries-card';

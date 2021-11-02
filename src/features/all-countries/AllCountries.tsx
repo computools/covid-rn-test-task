@@ -3,10 +3,10 @@ import {FlatList, Platform, RefreshControl, View} from 'react-native';
 import {useQuery} from 'react-query';
 import debounce from 'lodash.debounce';
 
-import {OutlinedTextInput} from '../../components/outilned-text-input';
+import {OutlinedTextInput} from '../../components/outilned-text-input/OutilnedTextInput.component';
 import {RootRoutes} from '../../navigation/root-stack/root-routes';
 import {RootStackProps} from '../../navigation/root-stack/types';
-import {CountryRow} from '../../components/country-row';
+import {CountryRow} from '../../components/country-row/CountryRow';
 import {CovidApi} from '../../apis/covid/covid-api';
 
 import {styles} from './styles/all-countries';
