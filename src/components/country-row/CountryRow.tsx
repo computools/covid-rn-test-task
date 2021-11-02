@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity, TouchableOpacityProps, ViewStyle, S
 
 import {CircularProgress} from '../circular-progress/CircularProgress.component';
 import {toLocaleStr} from '../../utils/to-locale-str';
-import {Country} from '../../models/country';
+import {Country} from '../../apis/covid/dto/country';
 
 import {dangerTintProgressColor, progressBackgroundColor, styles, tintProgressColor} from './country-row.styles';
 
@@ -22,17 +22,17 @@ export const CountryRow: React.FC<Props> = ({country, onPress, showSeparator, st
   return (
     <View style={[showSeparator && styles.separator, wrapperStyle]}>
       <TouchableOpacity {...rest} onPress={handlePress} style={[styles.wrapper, style]}>
-        <Image style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.countryCode.toLowerCase()}-flag.gif`}} />
+        <Image style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.CountryCode.toLowerCase()}-flag.gif`}} />
         <View style={styles.statWrapper}>
-          <Text style={styles.countryName}>{country.name}</Text>
-          <Text style={styles.statText}>Active cases - {toLocaleStr(country.totalConfirmed)}</Text>
-          <Text style={styles.statText}>Recovered - {toLocaleStr(country.totalRecovered)}</Text>
-          <Text style={styles.statText}>Deaths - {toLocaleStr(country.totalDeaths)}</Text>
+          <Text style={styles.countryName}>{country.Country}</Text>
+          <Text style={styles.statText}>Active cases - {toLocaleStr(country.TotalConfirmed)}</Text>
+          <Text style={styles.statText}>Recovered - {toLocaleStr(country.TotalRecovered)}</Text>
+          <Text style={styles.statText}>Deaths - {toLocaleStr(country.TotalDeaths)}</Text>
         </View>
         <CircularProgress
           size={64}
           width={3}
-          fill={Math.round((country.totalDeaths / country.totalConfirmed) * percentRatio)}
+          fill={Math.round((country.TotalDeaths / country.TotalConfirmed) * percentRatio)}
           tintColor={tintProgressColor}
           dangerTintColor={dangerTintProgressColor}
           dangerValue={50}

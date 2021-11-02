@@ -16,7 +16,7 @@ export const RootStack = () => {
     title: 'COVID - 19',
     headerRight: () => <UserReportButton onPress={() => navigation.navigate(RootRoutes.UserReport)} />,
   });
-  const buildDetailsOptions = ({route}: RootStackProps<RootRoutes.CountryDetails>) => ({title: route.params.country.name});
+  const buildDetailsOptions = ({route}: RootStackProps<RootRoutes.CountryDetails>) => ({title: route.params.country.Country});
 
   return (
     <Stack.Navigator>

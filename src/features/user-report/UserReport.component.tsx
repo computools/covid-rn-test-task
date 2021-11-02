@@ -34,7 +34,7 @@ export const UserReport: React.FC<RootStackProps<RootRoutes.UserReport>> = ({nav
       ) : (
         <Picker selectedValue={country} onValueChange={value => setCountry(value)}>
           {data?.map(c => (
-            <Picker.Item key={`Country-${c.slug}`} label={c.name} value={c.slug} />
+            <Picker.Item key={`Country-${c.ISO2}`} label={c.Country} value={c.Slug} />
           ))}
         </Picker>
       )}

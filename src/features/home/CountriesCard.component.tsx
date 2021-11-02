@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {LinkButton} from '../../components/link-button/LinkButton.component';
 
 import {CountryRow} from '../../components/country-row/CountryRow';
-import {Country} from '../../models/country';
+import {Country} from '../../apis/covid/dto/country';
 
 import {styles} from './styles/countries-card.styles';
 
@@ -19,7 +19,7 @@ export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress, goToC
   const handleContrySelect = (country: Country) => goToCountryDetails(country);
 
   const renderCountryRow = (country: Country, index: number) => (
-    <CountryRow onPress={handleContrySelect} key={`country-${country.id}`} showSeparator={index !== firstItemIndex} country={country} />
+    <CountryRow onPress={handleContrySelect} key={`country-${country.ID}`} showSeparator={index !== firstItemIndex} country={country} />
   );
 
   return (
