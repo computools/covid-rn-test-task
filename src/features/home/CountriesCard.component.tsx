@@ -15,21 +15,20 @@ interface Props {
 
 const firstItemIndex = 0;
 
-export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress, goToCountryDetails}) => (
-  <View style={styles.wrapper}>
-    <View style={styles.headerWrapper}>
-      <Text style={styles.headerTitle}>Top Countries</Text>
-      <LinkButton onPress={onSeeMorePress} text="See More" />
+export const CountriesCard: React.FC<Props> = ({countries, onSeeMorePress, goToCountryDetails}) => {
+  const handleContrySelect = (country: Country) => goToCountryDetails(country);
+
+  const renderCountryRow = (country: Country, index: number) => (
+    <CountryRow onPress={handleContrySelect} key={`country-${country.id}`} showSeparator={index !== firstItemIndex} country={country} />
+  );
+
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.headerWrapper}>
+        <Text style={styles.headerTitle}>Top Countries</Text>
+        <LinkButton onPress={onSeeMorePress} text="See More" />
+      </View>
+      <View style={styles.countriesWrapper}>{countries.map(renderCountryRow)}</View>
     </View>
-    <View style={styles.countriesWrapper}>
-      {countries.map((country, index) => (
-        <CountryRow
-          onPress={() => goToCountryDetails(country)}
-          key={`country-${country.id}`}
-          showSeparator={index !== firstItemIndex}
-          country={country}
-        />
-      ))}
-    </View>
-  </View>
-);
+  );
+};

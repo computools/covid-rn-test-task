@@ -75,13 +75,11 @@ export const Home: React.FC<RootStackProps<RootRoutes.Home>> = ({navigation}) =>
 
   const {total, today} = buildStat(data!.global);
 
+  const handleSeeMore = () => navigation.navigate(RootRoutes.AllCountries);
+
   return (
     <ScrollView style={styles.background} contentContainerStyle={styles.screenWrapper}>
-      <CountriesCard
-        goToCountryDetails={goToCountryDetails}
-        onSeeMorePress={() => navigation.navigate(RootRoutes.AllCountries)}
-        countries={data!.topFiveCountries}
-      />
+      <CountriesCard goToCountryDetails={goToCountryDetails} onSeeMorePress={handleSeeMore} countries={data!.topFiveCountries} />
       <GlobalStatCard totalStat={total} todayStat={today} />
     </ScrollView>
   );

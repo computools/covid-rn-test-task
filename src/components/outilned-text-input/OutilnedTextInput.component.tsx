@@ -119,13 +119,14 @@ export const OutlinedTextInput = React.forwardRef<TextInput, Props>(
       }
     };
 
+    const handleWrapperLayout = (e: LayoutChangeEvent) => setInputHeight(e.nativeEvent.layout.height);
+    const handleTouchEnd = () => inputRef.current.focus();
+    const handleTextLayout = (e: LayoutChangeEvent) => setLabelHeight(e.nativeEvent.layout.height);
+
     return (
-      <Animated.View
-        onLayout={(e: LayoutChangeEvent) => setInputHeight(e.nativeEvent.layout.height)}
-        onTouchEnd={() => inputRef.current.focus()}
-        style={[styles.container, {borderColor: focusColor}, containerStyle]}>
+      <Animated.View onLayout={handleWrapperLayout} onTouchEnd={handleTouchEnd} style={[styles.container, {borderColor: focusColor}, containerStyle]}>
         <Animated.Text
-          onLayout={(e: LayoutChangeEvent) => setLabelHeight(e.nativeEvent.layout.height)}
+          onLayout={handleTextLayout}
           style={[
             styles.label,
             {

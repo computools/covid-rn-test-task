@@ -24,13 +24,17 @@ const titles = {
 
 export const GlobalStatCard: React.FC<Props> = ({totalStat, todayStat}) => {
   const [selectedStat, setSelectedStat] = React.useState(Stat.Total);
+
+  const handleTodayPress = () => setSelectedStat(Stat.Today);
+  const handleTotalPress = () => setSelectedStat(Stat.Total);
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.title}>{titles[selectedStat]}</Text>
       <BarChart data={selectedStat === Stat.Total ? totalStat : todayStat} paddingHorizontal={padding} />
       <View style={styles.buttonsWrapper}>
-        <LinkButton onPress={() => setSelectedStat(Stat.Today)} textStyle={selectedStat === Stat.Today && styles.activeButtonText} text="Today" />
-        <LinkButton onPress={() => setSelectedStat(Stat.Total)} textStyle={selectedStat === Stat.Total && styles.activeButtonText} text="Total" />
+        <LinkButton onPress={handleTodayPress} textStyle={selectedStat === Stat.Today && styles.activeButtonText} text="Today" />
+        <LinkButton onPress={handleTotalPress} textStyle={selectedStat === Stat.Total && styles.activeButtonText} text="Total" />
       </View>
     </View>
   );
