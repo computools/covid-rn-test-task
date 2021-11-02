@@ -21,6 +21,7 @@ export const AllCountries: React.FC<RootStackProps<RootRoutes.AllCountries>> = (
   const {isLoading, data, refetch} = useQuery([query], ({queryKey}) => CovidApi.getAllCountriesSummary(queryKey[firstQueryIndex]));
 
   const navigateToCountryDetails = (country: Country) => navigation.navigate(RootRoutes.CountryDetails, {country});
+
   const renderItem = ({item}: ListRenderItemInfo<Country>) => <CountryRow onPress={navigateToCountryDetails} country={item} />;
   const renderSeparator = () => <View style={styles.separator} />;
 

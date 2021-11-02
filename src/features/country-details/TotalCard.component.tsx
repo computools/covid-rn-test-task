@@ -13,7 +13,7 @@ interface Props {
 export const TotalCard: React.FC<Props> = ({country}) => (
   <View style={styles.wrapper}>
     <View style={styles.titleWrapper}>
-      <Image style={styles.flag} source={{uri: `https://www.countryflags.io/${country.countryCode.toLowerCase()}/flat/64.png`}} />
+      <Image style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.countryCode.toLowerCase()}-flag.gif`}} />
       <Text style={styles.countryName}>{country.name}</Text>
     </View>
     <View style={styles.confirmedRow}>
