@@ -4,15 +4,15 @@ import {ActivityIndicator} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {RootRoutes} from '../../navigation/root-stack/root-routes';
-import {RootStackProps} from '../../navigation/root-stack/types';
+import {RootRoutes} from '../../navigation/root-stack/root-routes.types';
+import {RootStackProps} from '../../navigation/root-stack/root-stack.types';
 import {CovidApi, SummaryOut} from '../../apis/covid/covid-api';
 import {DataItem} from '../../components/bar-chart/data-item.types';
-import {GlobalStatCard} from './GlobalStatCard';
-import {CountriesCard} from './CountriesCard';
+import {GlobalStatCard} from './GlobalStatCard.component';
+import {CountriesCard} from './CountriesCard.component';
 import {Country} from '../../models/country';
 
-import {progressColor, styles} from './styles/home';
+import {progressColor, styles} from './styles/home.styles';
 
 const buildStat = (global: SummaryOut['global']) => {
   const total: Array<DataItem> = [

@@ -1,13 +1,13 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {CountryDetails} from '../../features/country-details/CountryDetails';
-import {AllCountries} from '../../features/all-countries/AllCountries';
+import {CountryDetails} from '../../features/country-details/CountryDetails.component';
+import {AllCountries} from '../../features/all-countries/AllCountries.component';
 import {UserReportButton} from '../../components/user-report-button/UserReportButton.component';
-import {UserReport} from '../../features/user-report/UserReport';
-import {Home} from '../../features/home/Home';
-import {RootStackParamList} from './types';
-import {RootRoutes} from './root-routes';
+import {UserReport} from '../../features/user-report/UserReport.component';
+import {Home} from '../../features/home/Home.component';
+import {RootStackParamList} from './root-stack.types';
+import {RootRoutes} from './root-routes.types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

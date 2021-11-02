@@ -5,7 +5,7 @@ import {LinkButton} from '../../components/link-button/LinkButton.component';
 import {CountryRow} from '../../components/country-row/CountryRow';
 import {Country} from '../../models/country';
 
-import {styles} from './styles/countries-card';
+import {styles} from './styles/countries-card.styles';
 
 interface Props {
   onSeeMorePress?: () => void;

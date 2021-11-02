@@ -4,12 +4,12 @@ import {useQuery} from 'react-query';
 import debounce from 'lodash.debounce';
 
 import {OutlinedTextInput} from '../../components/outilned-text-input/OutilnedTextInput.component';
-import {RootRoutes} from '../../navigation/root-stack/root-routes';
-import {RootStackProps} from '../../navigation/root-stack/types';
+import {RootRoutes} from '../../navigation/root-stack/root-routes.types';
+import {RootStackProps} from '../../navigation/root-stack/root-stack.types';
 import {CountryRow} from '../../components/country-row/CountryRow';
 import {CovidApi} from '../../apis/covid/covid-api';
 
-import {styles} from './styles/all-countries';
+import {styles} from './styles/all-countries.styles';
 
 const firstQueryIndex = 0;
 const waitTime = 500;

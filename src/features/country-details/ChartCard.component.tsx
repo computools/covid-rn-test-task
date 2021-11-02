@@ -6,7 +6,7 @@ import {Chevron} from '../../icons/chevron/Chevron.component';
 import {CurveChart, DataPoint} from '../../components/curve-chart/CurveChart.component';
 import {toLocaleStr} from '../../utils/to-locale-str';
 
-import {styles} from './styles/chart-card';
+import {styles} from './styles/chart-card.styles';
 
 interface Props {
   title: string;

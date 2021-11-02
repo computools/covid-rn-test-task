@@ -4,7 +4,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider} from 'react-query';
 
-import {RootNavigation} from './src/navigation/RootNavigation';
+import {RootNavigation} from './src/navigation/RootNavigation.component';
 
 export const App: React.FC = () => {
   const queryClient = new QueryClient();

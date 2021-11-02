@@ -4,7 +4,7 @@ import {View, Image, Text} from 'react-native';
 import {toLocaleStr} from '../../utils/to-locale-str';
 import {Country} from '../../models/country';
 
-import {styles} from './styles/total-card';
+import {styles} from './styles/total-card.styles';
 
 interface Props {
   country: Country;

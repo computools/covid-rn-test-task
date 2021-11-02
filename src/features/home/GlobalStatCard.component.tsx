@@ -5,7 +5,7 @@ import {DataItem} from '../../components/bar-chart/data-item.types';
 import {BarChart} from '../../components/bar-chart/BarChart.component';
 import {LinkButton} from '../../components/link-button/LinkButton.component';
 
-import {padding, styles} from './styles/global-stat-card';
+import {padding, styles} from './styles/global-stat-card.styles';
 
 interface Props {
   totalStat: Array<DataItem>;

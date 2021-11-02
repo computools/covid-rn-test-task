@@ -1,15 +1,15 @@
 import React from 'react';
 import {useQuery} from 'react-query';
 import {ActivityIndicator, View} from 'react-native';
-
-import {RootRoutes} from '../../navigation/root-stack/root-routes';
-import {RootStackProps} from '../../navigation/root-stack/types';
-import {CovidApi} from '../../apis/covid/covid-api';
-import {TotalCard} from './TotalCard';
-import {ChartCard} from './ChartCard';
-
-import {padding, styles} from './styles/country-details';
 import {ScrollView} from 'react-native-gesture-handler';
+
+import {RootRoutes} from '../../navigation/root-stack/root-routes.types';
+import {RootStackProps} from '../../navigation/root-stack/root-stack.types';
+import {CovidApi} from '../../apis/covid/covid-api';
+import {TotalCard} from './TotalCard.component';
+import {ChartCard} from './ChartCard.component';
+
+import {padding, styles} from './styles/country-details.styles';
 
 export const CountryDetails: React.FC<RootStackProps<RootRoutes.CountryDetails>> = ({route}) => {
   const {isLoading, data} = useQuery('oneDay', () => CovidApi.getDayOneStatByCountry(route.params.country.slug));
