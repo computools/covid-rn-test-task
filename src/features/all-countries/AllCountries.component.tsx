@@ -20,10 +20,12 @@ export const AllCountries: React.FC<RootStackProps<RootRoutes.AllCountries>> = (
   const renderItem = ({item}: ListRenderItemInfo<Country>) => <CountryRow onPress={navigateToCountryDetails} country={item} />;
   const renderSeparator = () => <View style={styles.separator} />;
 
+  const filteredCountries = data?.Countries.filter(c => c.Country.toLowerCase().includes(query.toLowerCase()));
+
   return (
     <FlatList
       style={styles.background}
-      data={data?.Countries.filter(c => c.Country.toLowerCase().includes(query.toLowerCase()))}
+      data={filteredCountries}
       contentContainerStyle={styles.contentWrapper}
       ListHeaderComponent={
         <OutlinedTextInput

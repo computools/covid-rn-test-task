@@ -18,26 +18,21 @@ export const CountryDetails: React.FC<RootStackProps<RootRoutes.CountryDetails>>
     return <ActivityIndicator />;
   }
 
+  const confirmed = data!.map(e => ({xValue: e.Confirmed, yValue: new Date(e.Date).getTime()}));
+  const active = data!.map(e => ({xValue: e.Active, yValue: new Date(e.Date).getTime()}));
+  const recovered = data!.map(e => ({xValue: e.Recovered, yValue: new Date(e.Date).getTime()}));
+  const deaths = data!.map(e => ({xValue: e.Deaths, yValue: new Date(e.Date).getTime()}));
+
   return (
     <ScrollView contentContainerStyle={styles.screenContent}>
       <TotalCard country={route.params.country} />
       <View style={styles.chartsRow}>
-        <ChartCard
-          padding={padding}
-          title="Confirmed"
-          data={data!.map(e => ({xValue: e.Confirmed, yValue: new Date(e.Date).getTime()}))}
-          color="#FF8A34"
-        />
-        <ChartCard padding={padding} title="Active" data={data!.map(e => ({xValue: e.Active, yValue: new Date(e.Date).getTime()}))} color="#3AC4FF" />
+        <ChartCard padding={padding} title="Confirmed" data={confirmed} color="#FF8A34" />
+        <ChartCard padding={padding} title="Active" data={active} color="#3AC4FF" />
       </View>
       <View style={styles.chartsRow}>
-        <ChartCard
-          padding={padding}
-          title="Recovered"
-          data={data!.map(e => ({xValue: e.Recovered, yValue: new Date(e.Date).getTime()}))}
-          color="#00BFA6"
-        />
-        <ChartCard padding={padding} title="Deaths" data={data!.map(e => ({xValue: e.Deaths, yValue: new Date(e.Date).getTime()}))} color="#F96E64" />
+        <ChartCard padding={padding} title="Recovered" data={recovered} color="#00BFA6" />
+        <ChartCard padding={padding} title="Deaths" data={deaths} color="#F96E64" />
       </View>
     </ScrollView>
   );
