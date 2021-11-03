@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-import {DataItem} from './data-item';
+import {DataItem} from './data-item.types';
 
-import {styles} from './styles/x-title';
+import {styles} from './styles/x-title.styles';
 
 interface Props {
   item: DataItem;

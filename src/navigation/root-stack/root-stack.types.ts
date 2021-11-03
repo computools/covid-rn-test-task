@@ -1,7 +1,7 @@
 import * as Stack from '@react-navigation/native-stack';
 
-import {Country} from '../../models/country';
-import {RootRoutes} from './root-routes';
+import {Country} from '../../apis/covid/dto/country';
+import {RootRoutes} from './root-routes.types';
 
 export type RootStackParamList = {
   [RootRoutes.Home]: undefined;

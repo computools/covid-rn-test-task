@@ -1,10 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
+import {LayoutChangeEvent, View} from 'react-native';
 import * as shape from 'd3-shape';
 import {scaleLinear} from 'd3-scale';
 import Svg, {Color, Defs, LinearGradient, Path, Stop} from 'react-native-svg';
 
-import {styles} from './styles';
+import {styles} from './curve-chart.styles';
 
 export interface DataPoint {
   xValue: number;
@@ -39,8 +39,10 @@ export const CurveChart: React.FC<Props> = ({data, color}) => {
   const [chartD, setChartD] = React.useState({width: 0, height: 0});
   const path = buildGraph(data, {...chartD});
 
+  const handleLayout = ({nativeEvent: {layout}}: LayoutChangeEvent) => setChartD({width: layout.width, height: layout.height});
+
   return (
-    <View onLayout={({nativeEvent: {layout}}) => setChartD({width: layout.width, height: layout.height})} style={styles.wrapper}>
+    <View onLayout={handleLayout} style={styles.wrapper}>
       <Svg width={chartD.width} height={chartD.height}>
         <Path d={path} strokeLinecap="round" stroke={color} strokeWidth={2} />
         <Path d={path + `L ${chartD.width} ${chartD.width} Z`} fill="url(#linear)" strokeWidth={3} />

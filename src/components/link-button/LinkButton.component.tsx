@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleProp, Text, TextStyle, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 
-import {styles} from './styles';
+import {styles} from './link-button.styles';
 
 interface Props extends TouchableOpacityProps {
   text: string;

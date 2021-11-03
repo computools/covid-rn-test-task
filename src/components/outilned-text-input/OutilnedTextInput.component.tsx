@@ -1,5 +1,15 @@
 import React from 'react';
-import {Animated, TextInput, TextInputProps, ViewStyle, StyleProp, TextStyle, LayoutChangeEvent} from 'react-native';
+import {
+  Animated,
+  TextInput,
+  TextInputProps,
+  ViewStyle,
+  StyleProp,
+  TextStyle,
+  LayoutChangeEvent,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+} from 'react-native';
 
 import {
   styles,
@@ -13,7 +23,8 @@ import {
   defaultLabelUnselectedSize,
   labelPadding,
   defaultBackgroundColor,
-} from './styles';
+} from './outilned-text-input.styles';
+import {useTimingAnimation} from '../../utils/use-timing-animation';
 
 enum LabelStates {
   Unselected,
@@ -83,13 +94,39 @@ export const OutlinedTextInput = React.forwardRef<TextInput, Props>(
 
     const labelBackground = (containerStyle && (containerStyle as {backgroundColor: string}).backgroundColor) || defaultBackgroundColor;
 
+    const focusAnimation = useTimingAnimation(focusedState, InputStates.Focused, animationDuration);
+    const labelFocusAnimation = useTimingAnimation(labelState, LabelStates.Selected, animationDuration);
+    const blurAnimation = useTimingAnimation(focusedState, InputStates.Unfocused, animationDuration);
+    const labelBlurAnimation = useTimingAnimation(labelState, LabelStates.Unselected, animationDuration);
+
+    const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      focusAnimation.start();
+      if (props.onFocus) {
+        props.onFocus(e);
+      }
+      if (value === '') {
+        labelFocusAnimation.start();
+      }
+    };
+
+    const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      blurAnimation.start();
+      if (props.onBlur) {
+        props.onBlur(e);
+      }
+      if (value === '') {
+        labelBlurAnimation.start();
+      }
+    };
+
+    const handleWrapperLayout = (e: LayoutChangeEvent) => setInputHeight(e.nativeEvent.layout.height);
+    const handleTouchEnd = () => inputRef.current.focus();
+    const handleTextLayout = (e: LayoutChangeEvent) => setLabelHeight(e.nativeEvent.layout.height);
+
     return (
-      <Animated.View
-        onLayout={(e: LayoutChangeEvent) => setInputHeight(e.nativeEvent.layout.height)}
-        onTouchEnd={() => inputRef.current.focus()}
-        style={[styles.container, {borderColor: focusColor}, containerStyle]}>
+      <Animated.View onLayout={handleWrapperLayout} onTouchEnd={handleTouchEnd} style={[styles.container, {borderColor: focusColor}, containerStyle]}>
         <Animated.Text
-          onLayout={(e: LayoutChangeEvent) => setLabelHeight(e.nativeEvent.layout.height)}
+          onLayout={handleTextLayout}
           style={[
             styles.label,
             {
@@ -103,45 +140,7 @@ export const OutlinedTextInput = React.forwardRef<TextInput, Props>(
           ]}>
           {label}
         </Animated.Text>
-        <TextInput
-          ref={inputRef}
-          {...props}
-          onFocus={e => {
-            Animated.timing(focusedState, {
-              toValue: InputStates.Focused,
-              duration: animationDuration,
-              useNativeDriver: false,
-            }).start();
-            if (props.onFocus) {
-              props.onFocus(e);
-            }
-            if (value === '') {
-              Animated.timing(labelState, {
-                toValue: LabelStates.Selected,
-                duration: animationDuration,
-                useNativeDriver: false,
-              }).start();
-            }
-          }}
-          selectionColor={props.selectionColor || activeColor!}
-          onBlur={e => {
-            Animated.timing(focusedState, {
-              toValue: InputStates.Unfocused,
-              duration: animationDuration,
-              useNativeDriver: false,
-            }).start();
-            if (props.onBlur) {
-              props.onBlur(e);
-            }
-            if (value === '') {
-              Animated.timing(labelState, {
-                toValue: LabelStates.Unselected,
-                duration: animationDuration,
-                useNativeDriver: false,
-              }).start();
-            }
-          }}
-        />
+        <TextInput ref={inputRef} {...props} onFocus={handleFocus} selectionColor={props.selectionColor || activeColor!} onBlur={handleBlur} />
       </Animated.View>
     );
   },

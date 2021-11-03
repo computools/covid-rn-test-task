@@ -2,9 +2,10 @@ import React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import {Svg, Path, G, Linecap, Color} from 'react-native-svg';
 
-import {polarToCartesian} from './polar-to-cartesian';
-import {styles} from './styles';
-import {buildCirclePath} from './svg-circle-path';
+import {polarToCartesian} from '../../utils/polar-to-cartesian';
+import {buildCirclePath} from '../../utils/build-circle-path';
+
+import {styles} from './circular-progress.styles';
 
 interface Props {
   style?: StyleProp<ViewStyle>;

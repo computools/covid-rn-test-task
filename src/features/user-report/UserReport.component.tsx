@@ -4,13 +4,13 @@ import {Picker} from '@react-native-picker/picker';
 import {ActivityIndicator, Alert, View} from 'react-native';
 import {useQuery} from 'react-query';
 
-import {RootRoutes} from '../../navigation/root-stack/root-routes';
-import {RootStackProps} from '../../navigation/root-stack/types';
-import {LinkButton} from '../../components/link-button';
+import {RootRoutes} from '../../navigation/root-stack/root-routes.types';
+import {RootStackProps} from '../../navigation/root-stack/root-stack.types';
+import {LinkButton} from '../../components/link-button/LinkButton.component';
 import {CovidApi} from '../../apis/covid/covid-api';
 import {Case} from '../../apis/covid/dto/case';
 
-import {styles} from './styles/user-report';
+import {styles} from './styles/user-report.styles';
 
 export const UserReport: React.FC<RootStackProps<RootRoutes.UserReport>> = ({navigation}) => {
   const [country, setCountry] = React.useState(null);
@@ -34,7 +34,7 @@ export const UserReport: React.FC<RootStackProps<RootRoutes.UserReport>> = ({nav
       ) : (
         <Picker selectedValue={country} onValueChange={value => setCountry(value)}>
           {data?.map(c => (
-            <Picker.Item key={`Country-${c.slug}`} label={c.name} value={c.slug} />
+            <Picker.Item key={`Country-${c.ISO2}`} label={c.Country} value={c.Slug} />
           ))}
         </Picker>
       )}

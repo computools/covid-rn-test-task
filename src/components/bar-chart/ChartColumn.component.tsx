@@ -3,14 +3,9 @@ import {View, Text} from 'react-native';
 import Svg, {Polygon} from 'react-native-svg';
 
 import {numFormatter} from '../../utils/num-formatter';
-import {styles, tooltipArrow} from './styles/column';
+import {DataItem} from './data-item.types';
 
-interface DataItem {
-  id: string;
-  value: number;
-  title: string;
-  color: string;
-}
+import {styles, tooltipArrow} from './styles/chart-column.styles';
 
 interface Props {
   index: number;
