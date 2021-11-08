@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Image, Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import {useQuery} from 'react-query';
+import FastImage from 'react-native-fast-image';
 
 import {toLocaleStr} from '../../utils/to-locale-str';
 import {Country} from '../../apis/covid/dto/country';
@@ -28,7 +29,7 @@ export const TotalCard: React.FC<Props> = ({country}) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.titleWrapper}>
-        <Image style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.CountryCode.toLowerCase()}-flag.gif`}} />
+        <FastImage style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.CountryCode.toLowerCase()}-flag.gif`}} />
         <Text style={styles.countryName}>{country.Country}</Text>
       </View>
       <View style={styles.confirmedRow}>

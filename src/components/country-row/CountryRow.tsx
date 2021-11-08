@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleProp} from 'react-native';
+import {View, Text, TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleProp} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 import {CircularProgress} from '../circular-progress/CircularProgress.component';
 import {toLocaleStr} from '../../utils/to-locale-str';
@@ -22,7 +23,7 @@ export const CountryRow: React.FC<Props> = ({country, onPress, showSeparator, st
   return (
     <View style={[showSeparator && styles.separator, wrapperStyle]}>
       <TouchableOpacity {...rest} onPress={handlePress} style={[styles.wrapper, style]}>
-        <Image style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.CountryCode.toLowerCase()}-flag.gif`}} />
+        <FastImage style={styles.flag} source={{uri: `https://www.worldometers.info/img/flags/${country.CountryCode.toLowerCase()}-flag.gif`}} />
         <View style={styles.statWrapper}>
           <Text style={styles.countryName}>{country.Country}</Text>
           <Text style={styles.statText}>Active cases - {toLocaleStr(country.TotalConfirmed)}</Text>
